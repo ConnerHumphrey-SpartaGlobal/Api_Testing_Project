@@ -47,6 +47,7 @@
             <artifactId>mockito-core</artifactId>
             <version>5.7.0</version>
             <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
