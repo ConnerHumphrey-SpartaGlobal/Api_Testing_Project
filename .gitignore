@@ -49,3 +49,6 @@ out/
 # Windows specific files
 Thumbs.db
 
+# Change for repo
+*.config
+
