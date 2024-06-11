@@ -20,6 +20,7 @@ import java.util.List;
 
 public class PostNewPetToStore extends AbstractApiTests {
     private static Response response;
+    private static Response invalidResponse;
     private static JSONObject responseBody;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String POST_PATH = AppConfig.getPetPath();
@@ -59,6 +60,19 @@ public class PostNewPetToStore extends AbstractApiTests {
                         .when()
                         .post()
                         .thenReturn();
+
+        pet.setId("ten");
+
+        invalidResponse =
+                RestAssured
+                        .given(PetUtils.postRequestAddPet(
+                                BASE_URI,
+                                POST_PATH,
+                                pet
+                        ))
+                        .when()
+                        .post()
+                        .thenReturn();
     }
 
     @Test
@@ -66,4 +80,11 @@ public class PostNewPetToStore extends AbstractApiTests {
     void validateResponseStatusCode() {
         MatcherAssert.assertThat(response.getStatusCode(), Matchers.is(200));
     }
+
+    @Test
+    @DisplayName("Validate the wrong response status code")
+    void validateErrorResponseStatusCode() {
+        MatcherAssert.assertThat(invalidResponse.getStatusCode(), Matchers.is(400));
+    }
+
 }
