@@ -1,5 +1,6 @@
 package com.sparta.PetApi.UserTests;
 
+import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.AppConfig;
 import com.sparta.PetApi.utilities.UserUtils;
 import io.restassured.RestAssured;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
-public class LogOutUserNegative {
+public class LogOutUserNegative extends AbstractApiTests {
     private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String LOGOUT_PATH = AppConfig.getUserLogoutPath();
