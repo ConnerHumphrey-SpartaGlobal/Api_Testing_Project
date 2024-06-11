@@ -45,4 +45,17 @@ public class UserUtils {
                 ))
                 .build();
     }
+
+    public static RequestSpecification deleteRequestForUser(String baseUri, String path, String username){
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
+                .addHeaders(Map.of(
+                        "Accept", "application/json"
+                ))
+                .addPathParams(Map.of(
+                        "username", username
+                ))
+                .build();
+    }
 }

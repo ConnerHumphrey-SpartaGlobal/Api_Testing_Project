@@ -21,6 +21,7 @@ import java.util.List;
 
 public class PostNewPetToStore extends AbstractApiTests {
     private static Response response;
+    private static Response invalidResponse;
     private static JSONObject responseBody;
     private static int ID;
 
@@ -31,16 +32,30 @@ public class PostNewPetToStore extends AbstractApiTests {
         Pet pet = PetUtils.createPetPOJO();
         ID = pet.getId();
         response = PetUtils.addPet(pet);
+      
+        pet.setId("ten");
+
+        invalidResponse = PetUtils.addPet(pet);
+      
     }
+
 
     @AfterAll
     static void afterAll(){
         PetUtils.deletePet(ID);
     }
 
+  
     @Test
     @DisplayName("Validate the response status code")
     void validateResponseStatusCode() {
         MatcherAssert.assertThat(response.getStatusCode(), Matchers.is(200));
     }
+
+    @Test
+    @DisplayName("Validate the wrong response status code")
+    void validateErrorResponseStatusCode() {
+        MatcherAssert.assertThat(invalidResponse.getStatusCode(), Matchers.is(400));
+    }
+
 }
