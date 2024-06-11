@@ -21,5 +21,18 @@ public class UserUtils {
                 .build();
     }
 
+    public static RequestSpecification getRequestForLogin(String baseUri, String path, String username, String password){
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
+                .addHeaders(Map.of(
+                        "Accept", "application/json"
+                ))
+                .addPathParams(Map.of(
+                        "username", username,
+                        "password", password
+                ))
+                .build();
 
+    }
 }
