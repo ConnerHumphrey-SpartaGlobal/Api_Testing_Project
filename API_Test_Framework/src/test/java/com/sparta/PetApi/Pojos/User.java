@@ -61,6 +61,9 @@ public class User{
 		return email;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getUsername(){
 		return username;
@@ -81,7 +84,12 @@ public class User{
 	}
 
 	public static User getDefaultUser(){
-		return new User(1, "ConnerHumphrey", "Conner","Humphrey", "Email", "Password", "1", 1);
+		return new User(1, "ConnerHumphrey", "Conner","Humphrey", "Email@sparta.com", "Password", "1", 1);
 	}
 
+	public static User getModifiedDefaultUser(){
+		User modifiedUser = getDefaultUser();
+		modifiedUser.setEmail("ChangedEmail@sparta.com");
+		return modifiedUser;
+	}
 }
