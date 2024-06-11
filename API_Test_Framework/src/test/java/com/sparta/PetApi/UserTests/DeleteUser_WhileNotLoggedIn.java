@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class DeleteUserTestsNegativeNotLoggedIn {
+public class DeleteUser_WhileNotLoggedIn {
     private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String DELETE_USER_PATH = AppConfig.getUserByUsernamePath();

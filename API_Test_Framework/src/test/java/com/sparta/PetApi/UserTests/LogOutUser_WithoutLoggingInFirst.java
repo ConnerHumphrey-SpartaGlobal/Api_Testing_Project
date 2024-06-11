@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
-public class LogOutUserNegative extends AbstractApiTests {
+public class LogOutUser_WithoutLoggingInFirst extends AbstractApiTests {
     private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String LOGOUT_PATH = AppConfig.getUserLogoutPath();
