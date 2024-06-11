@@ -6,13 +6,14 @@ import com.sparta.PetApi.utilities.UserUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class LogOutUserPositive extends AbstractApiTests {
+public class LoginUser_ValidUsernameAndPassword extends AbstractApiTests {
 
     private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();
@@ -23,7 +24,7 @@ public class LogOutUserPositive extends AbstractApiTests {
 
     @BeforeAll
     public static void beforeAll(){
-        RestAssured
+        response = RestAssured
                 .given(UserUtils.getRequestForLogin(
                         BASE_URI,
                         LOGIN_PATH,
@@ -31,28 +32,36 @@ public class LogOutUserPositive extends AbstractApiTests {
                         PASSWORD
                 ))
                 .when()
-                .get()
-                .thenReturn();
-
-        response = RestAssured
-                .given(UserUtils.getRequestForLogout(
-                        BASE_URI,
-                        LOGOUT_PATH))
-                .when()
-                .get()
+                    .get()
                 .thenReturn();
 
     }
 
     @Test
-    @DisplayName("User logout status code is 200")
+    @DisplayName("User login status code is 200")
     void userLogin_CheckStatusCode(){
         MatcherAssert.assertThat(response.statusCode(), is(200));
     }
 
     @Test
-    @DisplayName("Check User Login response string contains \"User logged out\"")
+    @DisplayName("Check User Login response string contains \"Logged in user\"")
     void userLogin_CheckStringResponse(){
-        MatcherAssert.assertThat(response.asString().contains("User logged out"), is(true));
+        MatcherAssert.assertThat(response.asString().contains("Logged in user session:"), is(true));
     }
+
+    @AfterAll
+    public static void afterAll(){
+        //logging out after logging in to maintain testability
+
+        RestAssured
+                .given(UserUtils.getRequestForLogout(
+                        BASE_URI,
+                        LOGOUT_PATH))
+                .when()
+                .get()
+                .then()
+                .assertThat()
+                .statusCode(200);
+    }
+
 }

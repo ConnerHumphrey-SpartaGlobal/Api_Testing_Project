@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class DeleteUserTestsNegativeLoggedIn extends AbstractApiTests {
+public class DeleteUser_DeletingDifferentUserToLoggedIn extends AbstractApiTests {
     private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String DELETE_USER_PATH = AppConfig.getUserByUsernamePath();
