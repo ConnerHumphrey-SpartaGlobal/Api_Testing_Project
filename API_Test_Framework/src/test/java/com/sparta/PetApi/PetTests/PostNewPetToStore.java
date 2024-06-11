@@ -11,6 +11,7 @@ import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.json.simple.JSONObject;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,59 +23,29 @@ public class PostNewPetToStore extends AbstractApiTests {
     private static Response response;
     private static Response invalidResponse;
     private static JSONObject responseBody;
-    private static final String BASE_URI = AppConfig.getBaseUri();
-    private static final String POST_PATH = AppConfig.getPetPath();
+    private static int ID;
+
     private static Pet postBody;
 
     @BeforeAll
     public static void beforeAll() {
-        Category category = new Category();
-        category.setId(1);
-        category.setName("Dogs");
-
-        TagsItem tag = new TagsItem();
-        tag.setId(0);
-        tag.setName("string");
-
-        List<String> photoUrls = new ArrayList<>();
-        photoUrls.add("string");
-
-        List<TagsItem> tags = new ArrayList<>();
-        tags.add(tag);
-
-        Pet pet = new Pet();
-        pet.setId(10);
-        pet.setName("doggie");
-        pet.setCategory(category);
-        pet.setPhotoUrls(photoUrls);
-        pet.setTags(tags);
-        pet.setStatus("available");
-
-        response =
-                RestAssured
-                        .given(PetUtils.postRequestAddPet(
-                                BASE_URI,
-                                POST_PATH,
-                                pet
-                        ))
-                        .when()
-                        .post()
-                        .thenReturn();
-
+        Pet pet = PetUtils.createPetPOJO();
+        ID = pet.getId();
+        response = PetUtils.addPet(pet);
+      
         pet.setId("ten");
 
-        invalidResponse =
-                RestAssured
-                        .given(PetUtils.postRequestAddPet(
-                                BASE_URI,
-                                POST_PATH,
-                                pet
-                        ))
-                        .when()
-                        .post()
-                        .thenReturn();
+        invalidResponse = PetUtils.addPet(pet);
+      
     }
 
+
+    @AfterAll
+    static void afterAll(){
+        PetUtils.deletePet(ID);
+    }
+
+  
     @Test
     @DisplayName("Validate the response status code")
     void validateResponseStatusCode() {
