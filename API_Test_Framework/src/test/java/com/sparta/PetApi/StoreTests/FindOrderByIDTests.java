@@ -58,4 +58,9 @@ public class FindOrderByIDTests extends AbstractApiTests {
     void testInvalidID_GetOrderByID(){
         MatcherAssert.assertThat(invalidResponse.statusCode(), Matchers.is(400));
     }
+
+    // another test case needed here to test 404 code
+
+    // another test case needed here to validate json body
+
 }
