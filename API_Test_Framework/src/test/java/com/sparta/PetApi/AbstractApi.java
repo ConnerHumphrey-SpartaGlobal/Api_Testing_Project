@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 
 public class AbstractApi {
 
+
     public static JSONObject parseResponseToJsonObject(Response response){
         JSONParser parser = new JSONParser();
         JSONObject responseBody = null;
