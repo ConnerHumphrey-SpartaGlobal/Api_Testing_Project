@@ -1,6 +1,9 @@
-package com.sparta.PetApi;
+package com.sparta.PetApi.UserTests;
 
+import com.sparta.PetApi.AbstractApiTests;
+import com.sparta.PetApi.AppConfig;
 import com.sparta.PetApi.Pojos.User;
+import com.sparta.PetApi.utilities.UserUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
@@ -11,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class CreateUserTestsPositive extends AbstractApi {
+public class CreateUserTestsPositive extends AbstractApiTests {
 
     private static Response response;
     private static JSONObject responseBody;

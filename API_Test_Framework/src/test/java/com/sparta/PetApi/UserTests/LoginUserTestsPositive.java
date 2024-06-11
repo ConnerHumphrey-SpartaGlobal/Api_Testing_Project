@@ -1,10 +1,11 @@
-package com.sparta.PetApi;
+package com.sparta.PetApi.UserTests;
 
+import com.sparta.PetApi.AbstractApiTests;
+import com.sparta.PetApi.AppConfig;
+import com.sparta.PetApi.utilities.UserUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
-import org.json.simple.JSONObject;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class LoginUserTestsPositive extends AbstractApi{
+public class LoginUserTestsPositive extends AbstractApiTests {
 
     private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();

@@ -1,6 +1,6 @@
 package com.sparta.PetApi.PetTests;
 
-import com.sparta.PetApi.AbstractApi;
+import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.AppConfig;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-public class FindPetByIdTests extends AbstractApi {
+public class FindPetByIdTests extends AbstractApiTests {
 
     private static Response response;
     private static JSONObject responseBody;

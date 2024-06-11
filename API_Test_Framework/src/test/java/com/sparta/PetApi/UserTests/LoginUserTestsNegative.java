@@ -1,5 +1,7 @@
-package com.sparta.PetApi;
+package com.sparta.PetApi.UserTests;
 
+import com.sparta.PetApi.AppConfig;
+import com.sparta.PetApi.utilities.UserUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
