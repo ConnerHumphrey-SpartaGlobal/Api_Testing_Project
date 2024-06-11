@@ -78,4 +78,5 @@ public class AppConfig {
     public static String getUserByUsernamePath() {
         return properties.getProperty("userByUsername");
     }
+
 }
