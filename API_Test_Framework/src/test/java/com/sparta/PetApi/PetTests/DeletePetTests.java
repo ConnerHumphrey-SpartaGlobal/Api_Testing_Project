@@ -19,11 +19,9 @@ public class DeletePetTests {
     @BeforeAll
     static void beforeAll(){
         Pet pet = PetUtils.createPetPOJO();
-<<<<<<< UpdatePetsTests
+
         ID = (Integer) pet.getId();
-=======
-        ID = (int) pet.getId();
->>>>>>> Dev
+
         PetUtils.addPet(pet);
         response = PetUtils.deletePet(ID);
     }
@@ -46,6 +44,6 @@ public class DeletePetTests {
     @DisplayName("Get deleted pet response")
     void petNoLongerExists(){
         Response badResponse = PetUtils.getPetById(ID);
-        assertThat(badResponse.getBody().asString(), is("Pet not found"));
+        assertThat(PetUtils.isPetFound(badResponse), is(false));
     }
 }

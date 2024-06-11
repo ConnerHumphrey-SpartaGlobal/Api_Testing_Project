@@ -147,5 +147,8 @@ public class PetUtils {
                 .build();
     }
 
+    public  static boolean isPetFound(Response response){
+        return !response.getBody().asString().equals("Pet not found");
+    }
 
 }
