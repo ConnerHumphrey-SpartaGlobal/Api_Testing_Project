@@ -1,9 +1,11 @@
 package com.sparta.PetApi.PetTests;
 
+import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.AppConfig;
 import com.sparta.PetApi.Pojos.Category;
 import com.sparta.PetApi.Pojos.Pet;
 import com.sparta.PetApi.Pojos.TagsItem;
+import com.sparta.PetApi.utilities.PetUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
@@ -16,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostNewPetToStore extends AbstractApi {
+public class PostNewPetToStore extends AbstractApiTests {
     private static Response response;
     private static JSONObject responseBody;
     private static final String BASE_URI = AppConfig.getBaseUri();
