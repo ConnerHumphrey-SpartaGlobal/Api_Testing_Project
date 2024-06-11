@@ -31,5 +31,4 @@ public class AbstractApi {
         }
         return responseBody;
     }
-
 }
