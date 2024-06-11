@@ -1,5 +1,8 @@
 package com.sparta.PetApi;
 
-public class Utilities {
+
+public class APIUtils {
+
+
 
 }
