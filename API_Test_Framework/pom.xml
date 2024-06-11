@@ -58,5 +58,11 @@
             <artifactId>cucumber-junit</artifactId>
             <version>7.13.0</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
