@@ -6,10 +6,6 @@ import org.json.simple.parser.ParseException;
 
 public class User{
 
-	public static void main(String[] args) throws ParseException {
-		User user = new User(1, "ConnerHumphrey", "Conner","Humphrey", "Email", "Password", "1", 1);
-		System.out.println(user.toString());
-	}
 	private int id;
 	private String username;
 	private String firstName;
@@ -82,6 +78,10 @@ public class User{
 				"\"phone\":" + phone + "," +
 				"\"userStatus\":" + userStatus +
 				"}";
+	}
+
+	public static User getDefaultUser(){
+		return new User(1, "ConnerHumphrey", "Conner","Humphrey", "Email", "Password", "1", 1);
 	}
 
 }
