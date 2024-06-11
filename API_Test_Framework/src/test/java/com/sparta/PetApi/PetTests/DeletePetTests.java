@@ -1,6 +1,7 @@
 package com.sparta.PetApi.PetTests;
 
 
+import com.sparta.PetApi.Pojos.Pet;
 import com.sparta.PetApi.utilities.PetUtils;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,7 +18,9 @@ public class DeletePetTests {
 
     @BeforeAll
     static void beforeAll(){
-        ID = 1; //Create pet here and get it's ID
+        Pet pet = PetUtils.createPetPOJO();
+        ID = pet.getId();
+        PetUtils.addPet(pet);
         response = PetUtils.deletePet(ID);
     }
 
@@ -29,7 +32,7 @@ public class DeletePetTests {
     }
 
     @Test
-    @DisplayName("Delete pet that doesn't exist")
+    @DisplayName("Delete pet that doesn't exist returns 400 response code")
     void deleteNonExist(){
         Response badResponse = PetUtils.deletePet(ID);
         assertThat(badResponse.getStatusCode(), is(400));
@@ -38,8 +41,7 @@ public class DeletePetTests {
     @Test
     @DisplayName("Get deleted pet response")
     void petNoLongerExists(){
-        //Get request for ID
-        // Assert that body says "Pet not found"
-        assertThat("Not implemented", is("Fail test"));
+        Response badResponse = PetUtils.getPetById(ID);
+        assertThat(badResponse.getBody().asString(), is("Pet not found"));
     }
 }
