@@ -29,7 +29,7 @@ public class AppConfig {
         return properties.getProperty("api_token");
     }
     public static String getPetPath() {
-        return properties.getProperty("repo_path");
+        return properties.getProperty("pet_path");
     }
     public static String getPetByStatPath() {
         return properties.getProperty("petByStat_path");
