@@ -66,6 +66,7 @@ public class UserUtils {
                 .addHeaders(Map.of(
                         "Accept", "application/json"
                 ))
+                .setContentType(ContentType.JSON)
                 .addPathParams(Map.of(
                         "username", username
                 ))
