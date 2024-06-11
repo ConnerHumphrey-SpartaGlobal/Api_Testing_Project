@@ -1,21 +1,34 @@
 package com.sparta.PetApi;
 
+import io.restassured.response.Response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class JsonUtils {
+public class AbstractApiTests {
+
     private static final JSONParser PARSER = new JSONParser();
 
-    public static JSONArray toJsonArray(String element) {
+    public static JSONObject parseResponseToJsonObject(Response response){
+        JSONObject responseBody = null;
         try {
-
-            return (JSONArray) PARSER.parse(element);
+            responseBody = (JSONObject) PARSER.parse(response.getBody().asString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return null;
+        return responseBody;
+    }
+
+    public static JSONArray parseResponseToJsonArray(Response response){
+
+        JSONArray responseBody = null;
+        try{
+            responseBody = (JSONArray) PARSER.parse(response.getBody().asString());
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return responseBody;
     }
 
     public static JSONObject toJsonObject(String element) {
