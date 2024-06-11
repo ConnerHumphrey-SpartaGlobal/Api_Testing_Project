@@ -1,5 +1,6 @@
-package com.sparta.PetApi;
+package com.sparta.PetApi.PetTests;
 
+import com.sparta.PetApi.AppConfig;
 import com.sparta.PetApi.Pojos.Category;
 import com.sparta.PetApi.Pojos.Pet;
 import com.sparta.PetApi.Pojos.TagsItem;

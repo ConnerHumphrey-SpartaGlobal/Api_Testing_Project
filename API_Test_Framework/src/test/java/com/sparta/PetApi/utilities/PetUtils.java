@@ -1,4 +1,4 @@
-package com.sparta.PetApi;
+package com.sparta.PetApi.utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.PetApi.Pojos.Pet;
@@ -12,6 +12,7 @@ import com.sparta.PetApi.AppConfig;
 import java.util.Map;
 
 public class PetUtils {
+    
     public static Response deletePet(int id){
         RequestSpecification spec = new RequestSpecBuilder()
                 .setBaseUri(AppConfig.getBaseUri())

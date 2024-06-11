@@ -1,4 +1,4 @@
-package com.sparta.PetApi;
+package com.sparta.PetApi.utilities;
 
 import com.sparta.PetApi.Pojos.User;
 import io.restassured.builder.RequestSpecBuilder;

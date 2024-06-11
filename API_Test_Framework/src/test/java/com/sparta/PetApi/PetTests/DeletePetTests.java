@@ -1,7 +1,7 @@
-package com.sparta.PetApi.tests;
+package com.sparta.PetApi.PetTests;
 
 
-import com.sparta.PetApi.PetUtils;
+import com.sparta.PetApi.utilities.PetUtils;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 
-public class deletePetTests {
+public class DeletePetTests {
     private static Response response;
     private static int ID;
 
