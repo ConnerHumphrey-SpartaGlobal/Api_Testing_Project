@@ -70,6 +70,27 @@ public class PetUtils {
                 .build();
     }
 
+    public static RequestSpecification updatePetSpec(Pet pet) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String petJson = "";
+        try {
+            petJson = objectMapper.writeValueAsString(pet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new RequestSpecBuilder()
+                .setBaseUri(AppConfig.getBaseUri())
+                .setBasePath(AppConfig.getPetPath())
+                .addHeaders(Map.of(
+                        "Accept", "application/json"
+                ))
+                .setContentType(ContentType.JSON)
+                .setBody(petJson)
+                .build();
+    }
+
+
     public static Response deletePet(int id){
         RequestSpecification spec = new RequestSpecBuilder()
                 .setBaseUri(AppConfig.getBaseUri())
@@ -98,6 +119,20 @@ public class PetUtils {
                 .when().get().thenReturn();
     }
 
+
+    public static Response updatePetName(int ID, String newName){
+        Response response = getPetById(ID);
+        Pet pet = response.body().as(Pet.class);
+
+        pet.setName(newName);
+
+        return RestAssured
+                .given(updatePetSpec(pet))
+                .when()
+                .put()
+                .thenReturn();
+   }
+
     public static RequestSpecification postRequestAddPet(String baseUri, String path, String petId, String petName, String petStatus) {
         return new RequestSpecBuilder()
                 .setBaseUri(baseUri)
@@ -111,5 +146,6 @@ public class PetUtils {
                 .setContentType(ContentType.JSON)
                 .build();
     }
+
 
 }

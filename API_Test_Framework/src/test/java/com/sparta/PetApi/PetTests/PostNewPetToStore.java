@@ -23,7 +23,7 @@ public class PostNewPetToStore extends AbstractApiTests {
     private static Response response;
     private static Response invalidResponse;
     private static JSONObject responseBody;
-    private static int ID;
+    private static Object ID;
 
     private static Pet postBody;
 
@@ -42,7 +42,7 @@ public class PostNewPetToStore extends AbstractApiTests {
 
     @AfterAll
     static void afterAll(){
-        PetUtils.deletePet(ID);
+        PetUtils.deletePet((Integer) ID);
     }
 
   
