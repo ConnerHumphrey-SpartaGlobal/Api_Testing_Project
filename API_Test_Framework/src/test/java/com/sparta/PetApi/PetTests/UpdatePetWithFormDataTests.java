@@ -22,16 +22,16 @@ public class UpdatePetWithFormDataTests extends AbstractApiTests {
 
     @BeforeAll
     public static void beforeAll() {
-        String petId = "10";
+        String petId = "1";
         String petName = "doggie";
         String petStatus = "sold";
-
-
 
         response = RestAssured
                 .given(PetUtils.postRequestAddPet(BASE_URI, POST_PATH, petId, petName, petStatus))
                 .get()
                 .thenReturn();
+
+        responseBody = parseResponseToJsonObject(response);
 
         String invalidPetId = "10000";
 
