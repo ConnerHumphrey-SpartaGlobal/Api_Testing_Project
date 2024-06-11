@@ -14,6 +14,7 @@ import java.util.Map;
 public class AbstractApiTests {
 
     private static final JSONParser PARSER = new JSONParser();
+    protected static Map<String, Object> requestBody = new HashMap<>();
 
     public static JSONObject parseResponseToJsonObject(Response response){
         JSONObject responseBody = null;
@@ -72,5 +73,5 @@ public class AbstractApiTests {
         return objectMapper.writeValueAsString(map);
     }
 
-    protected Map<String, Object> requestBody = new HashMap<>();
+
 }
