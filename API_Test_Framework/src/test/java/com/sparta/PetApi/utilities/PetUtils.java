@@ -98,4 +98,18 @@ public class PetUtils {
                 .when().get().thenReturn();
     }
 
+    public static RequestSpecification postRequestAddPet(String baseUri, String path, String petId, String petName, String petStatus) {
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
+                .addPathParam("petID", petId)
+                .addQueryParam("name", petName)
+                .addQueryParam("status", petStatus)
+                .addHeaders(Map.of(
+                        "Accept", "application/json"
+                ))
+                .setContentType(ContentType.JSON)
+                .build();
+    }
+
 }
