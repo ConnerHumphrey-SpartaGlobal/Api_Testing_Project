@@ -19,7 +19,11 @@ public class DeletePetTests {
     @BeforeAll
     static void beforeAll(){
         Pet pet = PetUtils.createPetPOJO();
-        ID = pet.getId();
+<<<<<<< UpdatePetsTests
+        ID = (Integer) pet.getId();
+=======
+        ID = (int) pet.getId();
+>>>>>>> Dev
         PetUtils.addPet(pet);
         response = PetUtils.deletePet(ID);
     }
