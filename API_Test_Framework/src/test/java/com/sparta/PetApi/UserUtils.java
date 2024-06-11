@@ -35,4 +35,14 @@ public class UserUtils {
                 .build();
 
     }
+
+    public static RequestSpecification getRequestForLogout(String baseUri, String path){
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
+                .addHeaders(Map.of(
+                        "Accept", "application/json"
+                ))
+                .build();
+    }
 }
