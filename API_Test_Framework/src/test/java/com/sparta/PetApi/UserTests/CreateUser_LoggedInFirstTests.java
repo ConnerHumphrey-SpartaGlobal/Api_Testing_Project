@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class CreateUser_LoggedInFirst extends AbstractApiTests {
+public class CreateUser_LoggedInFirstTests extends AbstractApiTests {
 
     private static Response response;
     private static JSONObject responseBody;
@@ -38,7 +38,9 @@ public class CreateUser_LoggedInFirst extends AbstractApiTests {
                 ))
                 .when()
                 .get()
-                .thenReturn();
+                .then()
+                .assertThat()
+                .statusCode(200);
 
         response = RestAssured
                 .given(UserUtils.postRequestSpecForCreatingUser(
