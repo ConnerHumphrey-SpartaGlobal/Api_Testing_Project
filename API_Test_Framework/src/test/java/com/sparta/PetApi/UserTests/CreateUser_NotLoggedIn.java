@@ -16,7 +16,6 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.is;
 
 public class CreateUser_NotLoggedIn extends AbstractApiTests {    private static Response response;
-    private static JSONObject responseBody;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String CREATE_USER_PATH = AppConfig.getUserPath();
     private static final String LOGIN_PATH = AppConfig.getUserLoginPath();

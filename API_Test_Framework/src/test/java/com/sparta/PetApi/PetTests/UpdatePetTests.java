@@ -1,6 +1,7 @@
 package com.sparta.PetApi.PetTests;
 
 
+import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.Pojos.Pet;
 import com.sparta.PetApi.utilities.PetUtils;
 import io.restassured.response.Response;
@@ -12,9 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
-public class UpdatePetTests {
+public class UpdatePetTests extends AbstractApiTests {
     private static final String NEW_NAME = "Nish";
-
 
     private static String oldName;
     private static String newName;
@@ -24,7 +24,7 @@ public class UpdatePetTests {
         Pet pet = PetUtils.createPetPOJO();
         int ID = (Integer) pet.getId();
 
-        Response response = PetUtils.addPet(pet);
+        response = PetUtils.addPet(pet);
         oldName = response.getBody().jsonPath().getString("name");
         response = PetUtils.updatePetName(ID, NEW_NAME);
         newName = response.getBody().jsonPath().getString("name");

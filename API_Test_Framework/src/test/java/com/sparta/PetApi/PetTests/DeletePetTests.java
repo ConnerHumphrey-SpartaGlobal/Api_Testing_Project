@@ -1,6 +1,7 @@
 package com.sparta.PetApi.PetTests;
 
 
+import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.Pojos.Pet;
 import com.sparta.PetApi.utilities.PetUtils;
 import io.restassured.response.Response;
@@ -12,8 +13,7 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 
-public class DeletePetTests {
-    private static Response response;
+public class DeletePetTests extends AbstractApiTests {
     private static int ID;
 
     @BeforeAll

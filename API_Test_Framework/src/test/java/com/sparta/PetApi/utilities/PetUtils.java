@@ -113,6 +113,7 @@ public class PetUtils {
                 .thenReturn();
     }
 
+    // can delete? 
     public  static Response getPetById(int ID){
         return RestAssured
                 .given(getPetByIDSpec(ID))
@@ -158,4 +159,23 @@ public class PetUtils {
                 .addQueryParam("status", status)
                 .build();
     }
+
+    public static <T> RequestSpecification getPetByIDSpecification(String baseUri, String path, String token, T petID) {
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
+                .addHeaders(Map.of(
+                        "Authorization", token
+                ))
+                .addPathParams(Map.of(
+                        "petID", petID
+                ))
+                .build();
+    }
+
+    public static <T> Response getPetByID(T petID){
+        return RestAssured.given(getPetByIDSpecification(AppConfig.getBaseUri(), AppConfig.getPetByIdPath(), AppConfig.getToken(), petID))
+                .when().get().thenReturn();
+    }
+
 }
