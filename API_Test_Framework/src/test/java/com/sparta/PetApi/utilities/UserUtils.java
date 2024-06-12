@@ -1,5 +1,6 @@
 package com.sparta.PetApi.utilities;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.PetApi.Pojos.User;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 public class UserUtils {
 
-    public static RequestSpecification postRequestSpecForCreatingUser(String baseUri, String path, User userToCreate){
+    public static RequestSpecification postRequestSpecForCreatingUser(String baseUri, String path, User userToCreate) throws JsonProcessingException {
         return new RequestSpecBuilder()
                 .setBaseUri(baseUri)
                 .setBasePath(path)
@@ -17,7 +18,7 @@ public class UserUtils {
                         "Accept", "application/json"
                 ))
                 .setContentType(ContentType.JSON)
-                .setBody(userToCreate.toString())
+                .setBody(userToCreate.toJson())
                 .build();
     }
 
@@ -59,7 +60,7 @@ public class UserUtils {
                 .build();
     }
 
-    public static RequestSpecification putRequestForUser(String baseUri, String path, String username, User modifiedUser){
+    public static RequestSpecification putRequestForUser(String baseUri, String path, String username, User modifiedUser) throws JsonProcessingException {
         return new RequestSpecBuilder()
                 .setBaseUri(baseUri)
                 .setBasePath(path)
@@ -70,7 +71,7 @@ public class UserUtils {
                 .addPathParams(Map.of(
                         "username", username
                 ))
-                .setBody(modifiedUser.toString())
+                .setBody(modifiedUser.toJson())
                 .build();
     }
 }
