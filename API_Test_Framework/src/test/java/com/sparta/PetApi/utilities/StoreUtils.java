@@ -2,19 +2,14 @@ package com.sparta.PetApi.utilities;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.PetApi.AppConfig;
-import com.sparta.PetApi.Pojos.Category;
 import com.sparta.PetApi.Pojos.Order;
-import com.sparta.PetApi.Pojos.Pet;
-import com.sparta.PetApi.Pojos.TagsItem;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class StoreUtils extends Utilities{
