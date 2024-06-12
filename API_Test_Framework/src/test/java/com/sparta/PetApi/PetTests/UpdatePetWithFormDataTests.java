@@ -14,9 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class UpdatePetWithFormDataTests extends AbstractApiTests {
-    private static Response response;
-    private static Response invalidResponse;
-    private static JSONObject responseBody;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String POST_PATH = AppConfig.getPetByIdPath();
 

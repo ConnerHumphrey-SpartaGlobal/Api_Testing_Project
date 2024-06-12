@@ -14,7 +14,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
 public class LogOutUser_WithoutLoggingInFirst extends AbstractApiTests {
-    private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String LOGOUT_PATH = AppConfig.getUserLogoutPath();
 

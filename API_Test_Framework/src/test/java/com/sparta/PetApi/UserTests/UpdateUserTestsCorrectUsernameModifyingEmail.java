@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.is;
 
 public class UpdateUserTestsCorrectUsernameModifyingEmail extends AbstractApiTests {
-    private static Response response;
     private static User responseUser;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String UPDATE_PATH = AppConfig.getUserByUsernamePath();

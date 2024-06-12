@@ -1,5 +1,6 @@
 package com.sparta.PetApi.UserTests;
 
+import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.AppConfig;
 import com.sparta.PetApi.utilities.UserUtils;
 import io.restassured.RestAssured;
@@ -11,8 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class DeleteUser_WhileNotLoggedIn {
-    private static Response response;
+public class DeleteUser_WhileNotLoggedIn extends AbstractApiTests {
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String DELETE_USER_PATH = AppConfig.getUserByUsernamePath();
     private static final String USERNAME = "Jeff";

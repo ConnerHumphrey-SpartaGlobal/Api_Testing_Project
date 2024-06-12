@@ -1,8 +1,9 @@
 package com.sparta.PetApi.Pojos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sparta.PetApi.utilities.JsonSerializable;
 
-public class TagsItem{
+public class TagsItem implements JsonSerializable {
 
 	@JsonProperty("name")
 	private String name;

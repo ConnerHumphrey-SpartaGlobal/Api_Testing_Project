@@ -2,6 +2,7 @@ package com.sparta.PetApi.StoreTests;
 
 import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.AppConfig;
+import com.sparta.PetApi.utilities.StoreUtils;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
@@ -16,36 +17,17 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 public class FindOrderByIDTests extends AbstractApiTests {
-    private static Response response;
-    private static JSONObject responseBody;
-    private static Response invalidResponse;
-    private static JSONObject invalidResponseBody;
     private static int validOrderID = 10;
     private static String invalidOrderID = "cookie";
 
     @BeforeAll
     public static void beforeAll(){
-        response =  RestAssured.given(getOrderByIDSpecification(AppConfig.getBaseUri(), AppConfig.getStoreByOrderIdPath(), AppConfig.getToken(), validOrderID))
-                .when().get().thenReturn();
+        response = StoreUtils.getOrderByID(validOrderID);
         responseBody = parseResponseToJsonObject(response);
-
-        invalidResponse = RestAssured.given(getOrderByIDSpecification(AppConfig.getBaseUri(), AppConfig.getStoreByOrderIdPath(), AppConfig.getToken(), invalidOrderID))
-                .when().get().thenReturn();
+        invalidResponse = StoreUtils.getOrderByID(invalidOrderID);
         invalidResponseBody = parseResponseToJsonObject(invalidResponse);
     }
 
-    public static <T> RequestSpecification getOrderByIDSpecification(String baseUri, String path, String token, T orderID) {
-        return new RequestSpecBuilder()
-                .setBaseUri(baseUri)
-                .setBasePath(path)
-                .addHeaders(Map.of(
-                        "Authorization", token
-                ))
-                .addPathParams(Map.of(
-                        "orderID", orderID
-                ))
-                .build();
-    }
 
     @Test
     @DisplayName("Given a valid order ID, when sending GET request to /store/order/{orderID}, return status code 200")

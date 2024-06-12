@@ -17,11 +17,6 @@ import java.util.Map;
 
 public class FindPetByIdTests extends AbstractApiTests {
 
-    private static Response response;
-    private static JSONObject responseBody;
-    private static Response invalidResponse;
-    private static JSONObject invalidResponseBody;
-
     private static int validPetID = 10;
     private static String invalidPetID = "sheesh101";
 

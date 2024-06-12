@@ -1,12 +1,8 @@
 package com.sparta.PetApi.PetTests;
 
 import com.sparta.PetApi.AbstractApiTests;
-import com.sparta.PetApi.AppConfig;
-import com.sparta.PetApi.Pojos.Category;
 import com.sparta.PetApi.Pojos.Pet;
-import com.sparta.PetApi.Pojos.TagsItem;
 import com.sparta.PetApi.utilities.PetUtils;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -16,10 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class PostNewPetToStore extends AbstractApiTests {
+public class PostNewPetToStoreTests extends AbstractApiTests {
     private static Response response;
     private static Response invalidResponse;
     private static JSONObject responseBody;
