@@ -72,7 +72,10 @@ public class AbstractApiTests {
         return (T) value;
     }
 
-
+    public static <T> T toObject(String jsonString, Class<T> object) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(jsonString, object);
+    }
 
 
 }

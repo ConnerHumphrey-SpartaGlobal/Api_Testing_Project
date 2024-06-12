@@ -113,7 +113,7 @@ public class PetUtils {
                 .thenReturn();
     }
 
-    // can delete? 
+    // can delete?
     public  static Response getPetById(int ID){
         return RestAssured
                 .given(getPetByIDSpec(ID))
