@@ -26,7 +26,10 @@ public class UpdatePetTests {
 
         Response response = PetUtils.addPet(pet);
         oldName = response.getBody().jsonPath().getString("name");
-        response = PetUtils.updatePetName(ID, NEW_NAME);
+
+        Response getResponse = PetUtils.getPetByID(ID);
+
+        response = PetUtils.updatePetName(getResponse, NEW_NAME);
         newName = response.getBody().jsonPath().getString("name");
     }
 
