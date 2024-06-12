@@ -2,6 +2,7 @@ package com.sparta.PetApi.PetTests;
 
 import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.AppConfig;
+import com.sparta.PetApi.utilities.PetUtils;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
@@ -16,33 +17,18 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 public class FindPetByIdTests extends AbstractApiTests {
-
     private static int validPetID = 10;
     private static String invalidPetID = "sheesh101";
 
     @BeforeAll
     static void beforeAll(){
-        response = RestAssured.given(getPetByIDSpecification(AppConfig.getBaseUri(), AppConfig.getPetByIdPath(), AppConfig.getToken(), validPetID))
-                .when().get().thenReturn();
+        response = PetUtils.getPetByID(validPetID);
         responseBody = parseResponseToJsonObject(response);
-
-        invalidResponse = RestAssured.given(getPetByIDSpecification(AppConfig.getBaseUri(), AppConfig.getPetByIdPath(), AppConfig.getToken(), invalidPetID))
-                .when().get().thenReturn();
+        invalidResponse = PetUtils.getPetByID(invalidPetID);
         invalidResponseBody = parseResponseToJsonObject(invalidResponse);
     }
 
-    public static <T> RequestSpecification getPetByIDSpecification(String baseUri, String path, String token, T petID) {
-        return new RequestSpecBuilder()
-                .setBaseUri(baseUri)
-                .setBasePath(path)
-                .addHeaders(Map.of(
-                        "Authorization", token
-                ))
-                .addPathParams(Map.of(
-                        "petID", petID
-                ))
-                .build();
-    }
+
 
 
    @Test
