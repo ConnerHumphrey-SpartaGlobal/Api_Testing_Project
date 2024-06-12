@@ -12,22 +12,25 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.is;
 
-public class DeleteUserTestsPositive extends AbstractApiTests {
-
+public class UpdateUser_CorrectUsernameModifyingEmail extends AbstractApiTests {
     private static Response response;
+    private static User responseUser;
     private static final String BASE_URI = AppConfig.getBaseUri();
-    private static final String DELETE_USER_PATH = AppConfig.getUserByUsernamePath();
+    private static final String UPDATE_PATH = AppConfig.getUserByUsernamePath();
+    private static final String CREATE_USER_PATH = AppConfig.getUserPath();
     private static final String LOGIN_PATH = AppConfig.getUserLoginPath();
     private static final String LOGOUT_PATH = AppConfig.getUserLogoutPath();
-    private static final String USERNAME = "Jeff";
+    private static final String USERNAME = "ConnerHumphrey";
     private static final String PASSWORD = "1234";
+    private static User defaultUser = User.getDefaultUser();
+    private static User modifiedUser = User.getModifiedDefaultUser();
+
 
     @BeforeAll
     public static void beforeAll(){
-        //Logging in before test
+        //Logging in
         RestAssured
                 .given(UserUtils.getRequestForLogin(
                         BASE_URI,
@@ -40,24 +43,49 @@ public class DeleteUserTestsPositive extends AbstractApiTests {
                 .then()
                 .assertThat()
                 .statusCode(200);
-        //deleting user
-        response = RestAssured
-                .given(UserUtils.deleteRequestForUser(BASE_URI,
-                        DELETE_USER_PATH,
-                        USERNAME))
+
+        //creating user
+        RestAssured
+                .given(UserUtils.postRequestSpecForCreatingUser(
+                        BASE_URI,
+                        CREATE_USER_PATH,
+                        defaultUser))
                 .when()
-                .delete()
+                .post()
+                .then()
+                .assertThat()
+                .statusCode(200);
+
+        //Modifying the user
+        response = RestAssured
+                .given(UserUtils.putRequestForUser(
+                        BASE_URI,
+                        UPDATE_PATH,
+                        USERNAME,
+                        modifiedUser))
+                .when()
+                .put()
                 .thenReturn();
+
+        responseUser = response.as(User.class);
     }
 
     @Test
-    @DisplayName("User deletion status code is 200")
-    void userDeletion_CheckStatusCode(){
+    @DisplayName("User Modification status code is 200")
+    void userModification_CheckStatusCode(){
         MatcherAssert.assertThat(response.statusCode(), is(200));
+    }
+
+    @Test
+    @DisplayName("User Modification test, checking to see if the modified value is returned in the body")
+    void userModificationReturnsModifiedEmail(){
+        MatcherAssert.assertThat(responseUser.getEmail(), is("ChangedEmail@sparta.com"));
     }
 
     @AfterAll
     public static void afterAll(){
+        //logging out after logging in to maintain testability
+
         RestAssured
                 .given(UserUtils.getRequestForLogout(
                         BASE_URI,

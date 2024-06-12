@@ -12,18 +12,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class LogOutUserPositive extends AbstractApiTests {
+public class LoginUser_InvalidUsernameAndPassword extends AbstractApiTests {
 
     private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String LOGIN_PATH = AppConfig.getUserLoginPath();
     private static final String LOGOUT_PATH = AppConfig.getUserLogoutPath();
-    private static final String USERNAME = "Conner";
-    private static final String PASSWORD = "1234";
+    private static final String USERNAME = " ";
+    private static final String PASSWORD = " ";
+
 
     @BeforeAll
     public static void beforeAll(){
-        RestAssured
+        response = RestAssured
                 .given(UserUtils.getRequestForLogin(
                         BASE_URI,
                         LOGIN_PATH,
@@ -34,25 +35,17 @@ public class LogOutUserPositive extends AbstractApiTests {
                 .get()
                 .thenReturn();
 
-        response = RestAssured
-                .given(UserUtils.getRequestForLogout(
-                        BASE_URI,
-                        LOGOUT_PATH))
-                .when()
-                .get()
-                .thenReturn();
-
     }
 
     @Test
-    @DisplayName("User logout status code is 200")
+    @DisplayName("User login status code is 400")
     void userLogin_CheckStatusCode(){
-        MatcherAssert.assertThat(response.statusCode(), is(200));
+        MatcherAssert.assertThat(response.statusCode(), is(400));
     }
 
     @Test
-    @DisplayName("Check User Login response string contains \"User logged out\"")
+    @DisplayName("Check User Login response string contains \"Logged in user\"")
     void userLogin_CheckStringResponse(){
-        MatcherAssert.assertThat(response.asString().contains("User logged out"), is(true));
+        MatcherAssert.assertThat(response.asString().contains("Logged in user session:"), is(false));
     }
 }

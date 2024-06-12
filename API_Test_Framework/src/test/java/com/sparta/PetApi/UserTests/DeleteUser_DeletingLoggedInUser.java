@@ -11,20 +11,23 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.is;
 
-public class loginUserTestsPositive extends AbstractApiTests {
+public class DeleteUser_DeletingLoggedInUser extends AbstractApiTests {
 
     private static Response response;
     private static final String BASE_URI = AppConfig.getBaseUri();
+    private static final String DELETE_USER_PATH = AppConfig.getUserByUsernamePath();
     private static final String LOGIN_PATH = AppConfig.getUserLoginPath();
     private static final String LOGOUT_PATH = AppConfig.getUserLogoutPath();
-    private static final String USERNAME = "Conner";
+    private static final String USERNAME = "Jeff";
     private static final String PASSWORD = "1234";
 
     @BeforeAll
     public static void beforeAll(){
-        response = RestAssured
+        //Logging in before test
+        RestAssured
                 .given(UserUtils.getRequestForLogin(
                         BASE_URI,
                         LOGIN_PATH,
@@ -32,27 +35,28 @@ public class loginUserTestsPositive extends AbstractApiTests {
                         PASSWORD
                 ))
                 .when()
-                    .get()
+                .get()
+                .then()
+                .assertThat()
+                .statusCode(200);
+        //deleting user
+        response = RestAssured
+                .given(UserUtils.deleteRequestForUser(BASE_URI,
+                        DELETE_USER_PATH,
+                        USERNAME))
+                .when()
+                .delete()
                 .thenReturn();
-
     }
 
     @Test
-    @DisplayName("User login status code is 200")
-    void userLogin_CheckStatusCode(){
+    @DisplayName("User deletion status code is 200")
+    void userDeletion_CheckStatusCode(){
         MatcherAssert.assertThat(response.statusCode(), is(200));
-    }
-
-    @Test
-    @DisplayName("Check User Login response string contains \"Logged in user\"")
-    void userLogin_CheckStringResponse(){
-        MatcherAssert.assertThat(response.asString().contains("Logged in user session:"), is(true));
     }
 
     @AfterAll
     public static void afterAll(){
-        //logging out after logging in to maintain testability
-
         RestAssured
                 .given(UserUtils.getRequestForLogout(
                         BASE_URI,

@@ -58,4 +58,19 @@ public class UserUtils {
                 ))
                 .build();
     }
+
+    public static RequestSpecification putRequestForUser(String baseUri, String path, String username, User modifiedUser){
+        return new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setBasePath(path)
+                .addHeaders(Map.of(
+                        "Accept", "application/json"
+                ))
+                .setContentType(ContentType.JSON)
+                .addPathParams(Map.of(
+                        "username", username
+                ))
+                .setBody(modifiedUser.toString())
+                .build();
+    }
 }
