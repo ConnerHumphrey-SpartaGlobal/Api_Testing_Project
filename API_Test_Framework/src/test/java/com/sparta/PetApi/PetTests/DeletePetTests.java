@@ -44,6 +44,6 @@ public class DeletePetTests {
     @DisplayName("Get deleted pet response")
     void petNoLongerExists(){
         Response badResponse = PetUtils.getPetById(ID);
-        assertThat(badResponse.getBody().asString(), is("Pet not found"));
+        assertThat(PetUtils.isPetFound(badResponse), is(false));
     }
 }

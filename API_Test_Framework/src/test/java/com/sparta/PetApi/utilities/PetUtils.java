@@ -147,6 +147,10 @@ public class PetUtils {
                 .build();
     }
 
+    public  static boolean isPetFound(Response response){
+        return !response.getBody().asString().equals("Pet not found");
+    }
+
     public static RequestSpecification getPetByStatusSpec(String baseUri, String path, String status) {
         return new RequestSpecBuilder()
                 .setBaseUri(baseUri)
