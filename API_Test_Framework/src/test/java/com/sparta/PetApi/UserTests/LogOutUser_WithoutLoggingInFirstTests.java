@@ -4,7 +4,6 @@ import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.AppConfig;
 import com.sparta.PetApi.utilities.UserUtils;
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -13,8 +12,7 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
-public class LogOutUser_WithoutLoggingInFirst extends AbstractApiTests {
-    private static Response response;
+public class LogOutUser_WithoutLoggingInFirstTests extends AbstractApiTests {
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String LOGOUT_PATH = AppConfig.getUserLogoutPath();
 

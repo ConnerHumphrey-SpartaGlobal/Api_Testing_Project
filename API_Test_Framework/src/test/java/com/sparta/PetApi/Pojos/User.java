@@ -1,8 +1,9 @@
 package com.sparta.PetApi.Pojos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sparta.PetApi.utilities.JsonSerializable;
 
-public class User{
+public class User implements JsonSerializable {
 
 	@JsonProperty("id")
 	private int id;
@@ -82,19 +83,6 @@ public class User{
 		this.userStatus = userStatus;
 	}
 
-	@Override
-	public String toString() {
-		return "{" +
-				"\"id\":" + id + "," +
-				"\"username\":\"" + username + "\"," +
-				"\"firstName\":\"" + firstName + "\"," +
-				"\"lastName\":\"" + lastName + "\"," +
-				"\"email\":\"" + email + "\"," +
-				"\"password\":\"" + password + "\"," +
-				"\"phone\":" + phone + "," +
-				"\"userStatus\":" + userStatus +
-				"}";
-	}
 
 	public static User getDefaultUser(){
 		User user = new User();

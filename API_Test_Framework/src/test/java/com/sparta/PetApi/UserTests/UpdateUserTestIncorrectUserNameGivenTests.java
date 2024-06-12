@@ -1,10 +1,11 @@
 package com.sparta.PetApi.UserTests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sparta.PetApi.AbstractApiTests;
 import com.sparta.PetApi.AppConfig;
 import com.sparta.PetApi.Pojos.User;
 import com.sparta.PetApi.utilities.UserUtils;
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,10 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 
-public class UpdateUserTestIncorrectUserNameGiven {
+public class UpdateUserTestIncorrectUserNameGivenTests extends AbstractApiTests {
 
-    private static Response response;
-    private static User responseUser;
+
     private static final String BASE_URI = AppConfig.getBaseUri();
     private static final String UPDATE_PATH = AppConfig.getUserByUsernamePath();
     private static final String CREATE_USER_PATH = AppConfig.getUserPath();
@@ -29,7 +29,7 @@ public class UpdateUserTestIncorrectUserNameGiven {
 
 
     @BeforeAll
-    public static void beforeAll(){
+    public static void beforeAll() throws JsonProcessingException {
         //Logging in
         RestAssured
                 .given(UserUtils.getRequestForLogin(

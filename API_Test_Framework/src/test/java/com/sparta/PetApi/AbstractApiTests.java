@@ -14,7 +14,11 @@ import java.util.Map;
 public class AbstractApiTests {
 
     private static final JSONParser PARSER = new JSONParser();
-    protected static Map<String, Object> requestBody = new HashMap<>();
+    protected static Response response;
+    protected static JSONObject responseBody;
+    protected static Response invalidResponse;
+    protected static JSONObject invalidResponseBody;
+
 
     public static JSONObject parseResponseToJsonObject(Response response){
         JSONObject responseBody = null;
@@ -68,9 +72,9 @@ public class AbstractApiTests {
         return (T) value;
     }
 
-    public static String convertMapToJson(Map<String, Object> map) throws JsonProcessingException {
+    public static <T> T toObject(String jsonString, Class<T> object) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(map);
+        return objectMapper.readValue(jsonString, object);
     }
 
 
