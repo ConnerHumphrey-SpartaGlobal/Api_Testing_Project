@@ -83,19 +83,6 @@ public class User implements JsonSerializable {
 		this.userStatus = userStatus;
 	}
 
-	@Override
-	public String toString() {
-		return "{" +
-				"\"id\":" + id + "," +
-				"\"username\":\"" + username + "\"," +
-				"\"firstName\":\"" + firstName + "\"," +
-				"\"lastName\":\"" + lastName + "\"," +
-				"\"email\":\"" + email + "\"," +
-				"\"password\":\"" + password + "\"," +
-				"\"phone\":" + phone + "," +
-				"\"userStatus\":" + userStatus +
-				"}";
-	}
 
 	public static User getDefaultUser(){
 		User user = new User();
