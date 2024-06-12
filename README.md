@@ -9,8 +9,7 @@ Clone this repo to your IDE and install dependencies listed in pom.xml.
 Note: a `config.properties` file is excluded from the resources folder for security reasons. Please contact the contributors to fetch a copy.
 
 # Class Diagram
-
-![Class Diagram](API_Test_Framework_Diagram.png)
+Please review the class diagram by setting up or downloading the .png file.
 
 # Credits
 Designed by Room 2 - Sparta Global Java Test Automation 2024:
