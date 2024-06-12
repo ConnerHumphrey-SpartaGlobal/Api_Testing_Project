@@ -40,6 +40,9 @@ userLogout_path
 
 userByUsername 
 
+# Class Diagram
+Please review the class diagram by setting up or downloading the .png file.
+
 # Enpoints tested
 
 Overall we tested 13/16 of the endpoints that are available with the API, these endpoints have been deemed the most important to bussiness operations and thus must be completed in the first sprint. The endpoints that have been tested are listed bellow with their functions:
