@@ -6,6 +6,7 @@ import com.sparta.PetApi.Pojos.Pet;
 import com.sparta.PetApi.Pojos.TagsItem;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.response.ResponseBody;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -42,6 +43,7 @@ public class PetUtils {
         return pet;
     }
 
+
     public static RequestSpecification postRequestAddPet(Pet pet) {
         ObjectMapper objectMapper = new ObjectMapper();
         String petJson = "";
@@ -69,6 +71,7 @@ public class PetUtils {
                 .addPathParam("petID", ID)
                 .build();
     }
+
 
     public static RequestSpecification updatePetSpec(Pet pet) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -113,17 +116,10 @@ public class PetUtils {
                 .thenReturn();
     }
 
-    // can delete?
-    public  static Response getPetById(int ID){
-        return RestAssured
-                .given(getPetByIDSpec(ID))
-                .when().get().thenReturn();
-    }
 
+    public static Response updatePetName(Response response, String newName){
+        Pet pet = response.getBody().as(Pet.class);
 
-    public static Response updatePetName(int ID, String newName){
-        Response response = getPetById(ID);
-        Pet pet = response.body().as(Pet.class);
 
         pet.setName(newName);
 

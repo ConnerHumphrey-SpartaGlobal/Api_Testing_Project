@@ -43,7 +43,7 @@ public class DeletePetTests extends AbstractApiTests {
     @Test
     @DisplayName("Get deleted pet response")
     void petNoLongerExists(){
-        Response badResponse = PetUtils.getPetById(ID);
+        Response badResponse = PetUtils.getPetByID(ID);
         assertThat(PetUtils.isPetFound(badResponse), is(false));
     }
 }
